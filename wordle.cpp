@@ -31,12 +31,12 @@ std::set<std::string> wordle(
 
 void wHelper(std::string current, const std::set<std::string>& dict, std::set<std::string>& match, size_t pos, std::string fLetters)
 {
-	int numDashes = 0;
+	int numDashes = 0; 
 	string fL = fLetters; //floating letters
 
-	if(pos == current.size())
+	if(pos == current.size()) //if word found return
 	{
-		if(fL.empty())
+		if(fL.empty()) 
 		{
 			if(dict.find(current)!=dict.end())
 			{
@@ -46,13 +46,13 @@ void wHelper(std::string current, const std::set<std::string>& dict, std::set<st
 		}
 	}
 
-	if(current[pos] != '-')
+	if(current[pos] != '-') //if letter in pos go to next space
 	{
 		wHelper(current, dict,match, pos+1,fL);
 		return;
 	}
 
-	for(size_t s = 0; s < current.size(); s++)
+	for(size_t s = 0; s < current.size(); s++) //keep track of num dashes
 	{
 		if(current[s] == '-')
 		{
@@ -60,7 +60,7 @@ void wHelper(std::string current, const std::set<std::string>& dict, std::set<st
 		}
 	}
 
-	if(numDashes > (int)fL.size())
+	if(numDashes > (int)fL.size()) //if there are more empty spaces than floating letters check a-z
 	{
 		for(char check = 'a'; check <= 'z'; check++)
 		{
@@ -78,7 +78,7 @@ void wHelper(std::string current, const std::set<std::string>& dict, std::set<st
 			}
 		}
 	}
-	else
+	else //otherwise use floating
 	{
 		for(size_t s = 0; s < fL.size(); s++)
 		{
